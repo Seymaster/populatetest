@@ -1,8 +1,10 @@
 const Todo = require("../models/Todo")
+const mongoose = require("mongoose");
 
 exports.createTodo = async (req, res, next) =>{
-    const {userId, todo} = req.body;
-    const newTodo = Todo({userId, todo})
+    let {owner, todo} = req.body;
+    owner = mongoose.Types.ObjectId(owner)
+    const newTodo = Todo({owner, todo})
     try{
         let data = await newTodo.save()
         res.status(200).send({
@@ -30,9 +32,9 @@ exports.createTodo = async (req, res, next) =>{
 
 
 exports.getTodos = async (req,res,next)=>{
-    let {...query} = req.query;
+    let {id} = req.params;
     try{
-    let data = await Todo.find(query)
+    let data = await Todo.find({id:id}).populate("user")
         res.status(200).send({
             status: 200,
             message: "Todo Loaded Successfully",

@@ -30,12 +30,12 @@ exports.createUser = async (req, res, next) =>{
 
 
 exports.getUser = async (req,res,next)=>{
-    let {...query} = req.query;
+    let { id } = req.params;
     try{
-    let data = await User.find(query).populate("todos")
+    let data = await User.find({id:id}).populate("todos")
         res.status(200).send({
             status: 200,
-            message: "User Loaded Successfully",
+            message: "User todos Loaded Successfully",
             data: data
         })
     }catch(err){

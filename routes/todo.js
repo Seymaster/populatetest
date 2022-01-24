@@ -6,7 +6,7 @@ const todoController = require("../controllers/todo");
 router.post("/todo", todoController.createTodo);
 
 // GET / returns all bank accounts of a user
-router.get("/todo", todoController.getTodos)
+router.get("/todo/:id", todoController.getTodos)
 
 // PUT / Update a bank account of a user
 // router.put("/todo/:id", todoController.updatetodo);

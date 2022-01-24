@@ -6,7 +6,7 @@ const userController = require("../controllers/user");
 router.post("/user", userController.createUser);
 
 // GET / returns all bank accounts of a user
-router.get("/user", userController.getUser)
+router.get("/user/:id", userController.getUser)
 
 // PUT / Update a bank account of a user
 // router.put("/user/:id", userController.updateuser);
